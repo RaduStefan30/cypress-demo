@@ -38,12 +38,6 @@ End-to-end UI tests for https://www.saucedemo.com/ written with Cypress 13.x and
   ```bash
   yarn test
   ```
-* **Pick a browser:**
-
-  ```bash
-  yarn cy:run --browser chrome
-  yarn cy:run --browser firefox
-  ```
 
 ## Test cases covered
 
