@@ -15,7 +15,6 @@ End-to-end UI tests for https://www.saucedemo.com/ written with Cypress 13.x and
 2. Clone this repo, then install deps:
    ```bash
    yarn
-````
 
 3. (Optional) Create `cypress.env.json` to override credentials:
 
