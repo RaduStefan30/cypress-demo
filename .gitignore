@@ -1,0 +1,15 @@
+# Node
+node_modules/
+.yarn/*
+.pnp.*
+
+# Cypress
+cypress/screenshots/
+cypress/videos/
+.cypress-cache/
+
+# OS
+.DS_Store
+
+# Env
+cypress.env.json

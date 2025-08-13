@@ -1,0 +1,52 @@
+name: E2E CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chrome, firefox]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Run Cypress (${{ matrix.browser }})
+        uses: cypress-io/github-action@v6
+        with:
+          browser: ${{ matrix.browser }}
+          command: yarn cy:run --browser ${{ matrix.browser }} --headless
+
+      # Optional: record to Cypress Cloud and parallelize specs
+      #   1) Add CYPRESS_RECORD_KEY in repo secrets
+      #   2) Uncomment below. GitHub matrix will fan out parallel machines.
+      # - name: Run Cypress in parallel via Cloud (optional)
+      #   if: false
+      #   uses: cypress-io/github-action@v6
+      #   with:
+      #     record: true
+      #     parallel: true
+      #     group: ${{ matrix.browser }}
+      #     browser: ${{ matrix.browser }}
+      #   env:
+      #     CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
