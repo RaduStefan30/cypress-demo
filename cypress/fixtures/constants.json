@@ -1,0 +1,17 @@
+{
+    "messages": {
+        "lockedOut": "locked out",
+        "password": "secret_sauce"
+    },
+    "user": {
+        "firstName": "Radu",
+        "lastName": "QA",
+        "postalCode": "400000"
+    },
+    "sorting": {
+        "nameAscending": "Name A→Z",
+        "nameDescending": "Name Z→A",
+        "priceAscending": "Price low→high",
+        "priceDescending": "Price high→low"
+    }
+}
